@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DashBoard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="Indexstyles.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
+
+   
+
+</head>
+<body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg bg-light navbar-light py-1 fixed-top ">
+      <!-- navbar-expand-lg for responsiveness sizing 
+      bg-dark for color
+      navbar-dark so the text is light / text-primary 
+      
+      -->
+      <div class="container">
+        <a href="#" class="navbar-brand">DataMinds</a>
+        <!-- navbar-brand for the logo/element -->
+        <button
+          class="navbar-toggler" 
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navmenu"
+        >
+        <!-- collapse so the navmenu below becomes a hamburger menu -->
+        <!-- data-bs-target takes the data from #navmenu id -->
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navmenu">
+          <!-- collapse navbar-collapse so when the screen becomes small it will be a dropdown menu -->
+          <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="list.html">Products</a>
+          </li>
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Descriptive Analysis
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="catagory.html">General analysis</a></li>
+              <li><a class="dropdown-item" href="price_VS_rating.html">Price Vs Rating</a></li>
+              <li><a class="dropdown-item" href="review_graph.html">Reviews Chart</a></li>
+              <!-- <li><a class="dropdown-item" href="#">Sales Charts</a></li> -->
+              <li><a class="dropdown-item" href="genOwnChart2.html">add json</a></li>
+  
+            </ul>
+          </li>
+          <li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Predictive Analysis
+              </a>
+              <ul class="dropdown-menu" >
+                  <li><a class="dropdown-item" href="predictive2.html">positive reviews and total sales</a></li>
+                <li><a class="dropdown-item" href="predictive3.html">negative reviews and total sales</a></li>
+                <li><a class="dropdown-item" href="predictive4.html">Sales Analysis by Seller</a></li>
+                <li><a class="dropdown-item" href="predictive5.html">Average Total Reviews by Category</a></li>
+                <li><a class="dropdown-item" href="predictive6.html">Predicted Distribution of Prices by Category</a></li>
+    
+              </ul>
+
+            </li>
+            
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="overview.html">Overview</a>
+          </li>
+        </ul>
+        </div>
+      </div>
+    </nav>
+<body>
+ 
+    <!-- Showcase -->
+    <section
+      class=" text-light p-5 p-lg-0 pt-lg-5 p-3 text-center text-sm-start mt-5" style="background-color:black ;"
+    >
+    <!-- text-sm-start till the size is sm the text will be aligned at the start and on mobile screen sm it will be centerd  -->
+    <!-- text-light for the color and p is for padding pt for padding-top -->
+      <div class="container">
+        <div class="d-sm-flex align-items-center justify-content-between"> 
+          <!-- justify-content-between works like justify-content: space inbetween-->
+          <!-- d-sm-flex sm is a breakpoint and d-flex is for a flexbox -->
+          <div>
+            <h1>Descriptive<span class="text-warning"> And Predictive Analysis </span></h1>
+            <!-- warning = yellow -->
+            <p class="lead my-5 ">
+              <!-- lead is to change the text size m is for margin and y for y axixs so my-5 -->
+              DataMinds is a data analysis firm specializing in ecommerce website analysis.
+Based in Solapur, Maharashtra, we pride ourselves on providing accurate and actionable insights to our clients.
+Our team of experts uses cutting-edge technology and proven methodologies to deliver valuable information that helps businesses make informed decisions. At DataMinds, we are committed to providing exceptional service and helping our clients achieve their goals.
+
+            </p>
+          </div>
+          <img
+            class="img-fluid w-50 d-none d-sm-block"
+            style="height: 200px;"
+            src="imgs/logo5.png"
+            alt=""
+          />
+          <!-- d-none removes the img and d-sm-block removes it only when the screen is sm -->
+          <!-- w-50 for weidth h-50 for height -->
+        </div>
+      </div>
+    </section>
+
+    <section class="p-5">
+        <div class="container">
+          <div class="row text-center g-4">
+            <!-- g-4 for gap -->
+            <div class="col-md">
+              <!-- col-md stacks the columns when size becomes md -->
+              <div class="card bg-dark text-light">
+                <div class="card-body text-center">
+                  <div class="h1 ">
+                    <i class="bi bi-laptop"></i>
+                    <!-- bi for bootstrap icons -->
+                  </div>
+                  <h3 class="card-title ">Total sales</h3>
+                  <!-- mb margin bottom  -->
+                  <p class="card-text">
+                    Sales for all three sellers- amazon, ebay, flipkart
+                  </p>
+                  <p id="totalSalesText"></p>
+                  <!-- btn-primary for blue color -->
+                </div>
+              </div>
+            </div>
+            <div class="col-md">
+              <div class="card bg-secondary text-light">
+                <div class="card-body text-center">
+                  <div class="h1 ">
+                    <i class="bi bi-person-square"></i>
+                    <!-- bi for bootstrap icons -->
+                  </div>
+                  <h3 class="card-title  ">Total reviews</h3>
+                  <p class="mb-4">Both Possitive and negative</p>
+                  <!-- card-title for the title -->
+                  <p id="totalReviewsText">No. of Reviews from all sites</p>
+                  
+                </div>
+              </div>
+            </div>
+            <div class="col-md">
+              <div class="card bg-dark text-light">
+                <div class="card-body text-center">
+                  <!-- text center for allignment -->
+                  <div class="h1 ">
+                    <i class="bi bi-people"></i>
+                  </div>
+                  <h3 class="card-title ">Total products</h3>
+                  <p class="card-text">
+                    products from amazon, ebay, flipkart
+                  </p>
+                  <p id="totalProductsText"></p>
+                  <!-- <a href="#" class="btn btn-primary">Read More</a> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="learn" class="p-5">
+        <div class="container">
+          <div class="row align-items-center justify-content-between">
+            <div class="col-md">
+              <img style="height: 400px;" src="imgs/description.webp" class="img-fluid" alt="" />
+              <!-- img-fuild so the img stays in the container and does not overflow -->
+            </div>
+            <div class="col-md p-5">
+              <h2>Descriptive Analysis</h2>
+              <p class="lead">
+                Descriptive analysis is an essential initial step in data analysis that aims to summarize and present key characteristics of a dataset. It provides a concise overview of the data.
+
+              </p>
+              <p>
+                descriptive analysis helps identify patterns, trends, and outliers within the data. This exploration aids in understanding the data's basic properties and uncovering valuable insights for decision-making. With its focus on summarization and presentation
+              </p>
+              <a href="#" class="btn btn-light mt-3">
+                <i class="bi bi-chevron-right"></i> Read More
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+  
+      <section id="learn" class="p-5 bg-dark text-light">
+        <div class="container">
+          <div class="row align-items-center justify-content-between">
+            <div class="col-md p-5">
+              <h2>Predictive Analysis</h2>
+              <p class="lead">
+                Predictive analysis is a methodology that leverages historical data, statistical algorithms, and machine learning techniques to make predictions about future outcomes.
+
+              </p>
+              <p>
+                Predictive analysis empowers organizations to gain a competitive advantage by leveraging insights into future trends and potential outcomes, leading to improved efficiency, profitability, and strategic decision-making.
+
+              </p>
+              <a href="#" class="btn btn-light mt-3">
+                <i class="bi bi-chevron-right"></i> Read More
+              </a>
+            </div>
+            <div class="col-md">
+              <img style="height: 300px;" src="imgs/prediction.png" class="img-fluid" alt="" />
+            </div>
+          </div>
+        </div>
+      </section>
+  
+      <!-- Question Accordion -->
+      <section id="questions" class="p-5">
+        <div class="container">
+          <h2 class="text-center mb-4">Frequently Asked Questions</h2>
+          <div class="accordion accordion-flush" id="questions">
+            <!-- Item 1 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#question-one"
+                >
+                  What are the main goals of descriptive analysis?
+                </button>
+              </h2>
+              <div
+                id="question-one"
+                class="accordion-collapse collapse"
+                data-bs-parent="#questions"
+              >
+                <div class="accordion-body">
+                  The main goals of descriptive analysis are to provide a clear understanding of the dataset, identify patterns and trends, summarize and visualize the data, and derive meaningful insights. It helps in exploring the characteristics of the data, identifying outliers, and gaining an overall picture of the dataset's distribution.
+
+                </div>
+              </div>
+            </div>
+            <!-- Item 2 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#question-two"
+                >
+                  What are the main goals of predictive analysis?
+                </button>
+              </h2>
+              <div
+                id="question-two"
+                class="accordion-collapse collapse"
+                data-bs-parent="#questions"
+              >
+                <div class="accordion-body">
+                  The main goals of predictive analysis are to make accurate predictions about future outcomes, identify factors that significantly influence those outcomes, and understand the relationships and patterns in the data that contribute to those predictions. It helps in making informed decisions, optimizing processes, and planning for the future based on data-driven insights.
+
+                </div>
+              </div>
+            </div>
+            <!-- Item 3 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#question-three"
+                >
+                  What are some commonly used techniques in descriptive analysis?
+                </button>
+              </h2>
+              <div
+                id="question-three"
+                class="accordion-collapse collapse"
+                data-bs-parent="#questions"
+              >
+                <div class="accordion-body">
+                  Some commonly used techniques in descriptive analysis include measures of central tendency (mean, median, mode), measures of dispersion (standard deviation, range), frequency distributions, histograms, bar charts, scatter plots, and summary statistics. These techniques help in summarizing and visualizing the data, gaining insights into its characteristics, and understanding the overall distribution.
+
+                </div>
+              </div>
+            </div>
+            <!-- Item 4 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#question-four"
+                >
+                  What are some commonly used techniques in predictive analysis?
+                </button>
+              </h2>
+              <div
+                id="question-four"
+                class="accordion-collapse collapse"
+                data-bs-parent="#questions"
+              >
+                <div class="accordion-body">
+                  Some commonly used techniques in predictive analysis include regression analysis, decision trees, random forests, support vector machines, neural networks, and time series analysis. These techniques help in building predictive models by identifying relationships between variables, capturing patterns and trends in the data, and making predictions based on historical or training data.
+                </div>
+              </div>
+            </div>
+            <!-- Item 5 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#question-five"
+                >
+                What is the difference between descriptive and predictive analysis?
+                </button>
+              </h2>
+              <div
+                id="question-five"
+                class="accordion-collapse collapse"
+                data-bs-parent="#questions"
+              >
+                <div class="accordion-body">
+                  Descriptive analysis focuses on summarizing and describing the main features of a dataset, providing insights into its past or present characteristics. It helps in understanding the data, identifying patterns, and gaining overall knowledge about the dataset. On the other hand, predictive analysis aims to make predictions or forecasts about future outcomes based on historical data. It involves building models and algorithms to identify patterns and relationships in the data that can be used to make informed predictions about future events or behaviors.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+  
+
+      <section class="p-5 " style="text-align: center; width: auto;" >
+          
+            <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3801.6103267613375!2d75.92023767508957!3d17.6686055832673!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc5da42cf5b6333%3A0xce43e421c82afed7!2sWalchand%20Institute%20Of%20Technology%20(%20W.I.T%20)!5e0!3m2!1sen!2sin!4v1688376669823!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3801.6103267613375!2d75.92023767508957!3d17.6686055832673!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc5da42cf5b6333%3A0xce43e421c82afed7!2sWalchand%20Institute%20Of%20Technology%20(%20W.I.T%20)!5e0!3m2!1sen!2sin!4v1688380909181!5m2!1sen!2sin" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </section>
+      <div style="text-align: center; " class="bg-dark text-light p-3 " >
+        If you have questions about anything or advertising, please contact us at vrpalrecha2102@gmail.com
+      </div>
+      
+      <div style="text-align: center; " class="bg-dark text-light" >
+        © 2023 Copyright: DataMinds
+      </div>
+    
+
+
+
+  
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- total sales -->
+<script>
+  function initMap() {
+    // Specify the coordinates for the center of the map
+    var center = { lat: 17.659920, lng: 75.906387 };
+
+    // Create a new map instance
+    var map = new google.maps.Map(document.getElementById('map'), {
+      center: center,
+      zoom: 100 // Specify the desired zoom level
+    });
+
+    // Add any additional map customization or markers as needed
+  }
+    // Load the JSON data (products1.json)
+    fetch('products1.json')
+      .then(response => response.json())
+      .then(productsData => {
+        let totalSales = 0;
+        let totalReviews = 0;
+        const totalProducts = productsData.length;
+
+        // Calculate total sales and total reviews
+        productsData.forEach(product => {
+          totalSales += product.sales.totalSales;
+          totalReviews += product.totalReviews;
+        });
+
+        // Display total sales, total reviews, and total products
+        const totalSalesText = document.getElementById('totalSalesText');
+        totalSalesText.textContent = 'Total Sales: ' + totalSales;
+
+        const totalReviewsText = document.getElementById('totalReviewsText');
+        totalReviewsText.textContent = 'Total Reviews: ' + totalReviews;
+
+        const totalProductsText = document.getElementById('totalProductsText');
+        totalProductsText.textContent = 'Number of Products: ' + totalProducts;
+        initMap();
+      })
+      .catch(error => {
+        console.error('Error loading JSON data:', error);
+      });
+  </script>
+
+
+
+
+
+
+</html>
