@@ -1,8 +1,13 @@
+# TODO: prediction forms
+# TODO: model integration
+
 from flask import Flask
 from flask import render_template
 
+# init app
 app = Flask(__name__)
 
+# routes
 @app.route("/")
 def index():
     return render_template('index.html')
