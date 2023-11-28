@@ -51,6 +51,9 @@ def averageTotalReviewsByCategory():
 def predictedDistributionOfPricesByCategory():
     return render_template('predictive6.html')
 
+@app.route("/overview")
+def overview():
+    return render_template('overview.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
