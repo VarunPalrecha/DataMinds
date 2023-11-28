@@ -17,7 +17,7 @@ def products():
 
 @app.route("/general-analysis")
 def generalAnalysis():
-    return render_template('category.html')
+    return render_template('catagory.html')
 
 @app.route("/price-vs-rating")
 def priceVsRating():
@@ -34,6 +34,10 @@ def addJson():
 @app.route("/postive-reviews-and-total-sales")
 def postiveReviewsAndTotalSales():
     return render_template('predictive2.html')
+
+@app.route("/negative-reviews-and-total-sales")
+def negativeReviewsAndTotalSales():
+    return render_template('predictive3.html')
 
 @app.route("/sales-analysis-by-seller")
 def salesAnalysisBySeller():
