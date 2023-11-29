@@ -1,0 +1,95 @@
+/* Custom CSS for Average Total Reviews by Category */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-top: 60px;
+  }
+  
+  #categoryFilter {
+    margin: 20px 0;
+  }
+  
+  #lineChartContainer {
+    max-width: 800px;
+    margin: 40px auto;
+  }
+  
+  /* Navbar styles */
+  
+  .navbar {
+    background-color: #f8f9fa;
+  }
+  
+  .navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .navbar-nav .nav-link {
+    color: #333;
+  }
+  
+  .navbar-toggler {
+    border: none;
+    outline: none;
+  }
+  
+  /* Dropdown menu styles */
+  
+  .dropdown-menu {
+    margin-top: 5px;
+    min-width: 200px;
+  }
+  
+  .dropdown-item {
+    color: #333;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #f8f9fa;
+  }
+  
+  /* Bootstrap container styles */
+  
+  .container-fluid {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  /* Custom container styles */
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  /* Responsive styles */
+  
+  @media (max-width: 576px) {
+    .navbar-brand {
+      font-size: 20px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    #navbarNavDropdown {
+      margin-left: 0;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .container {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+  }
+  
