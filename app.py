@@ -1,11 +1,15 @@
 # TODO: prediction forms
 # TODO: model integration
 
-from flask import Flask
+from flask import Flask, request
 from flask import render_template
+from pickle import load
 
 # init app
 app = Flask(__name__)
+
+with open('models/salesvspositive.pkl', 'rb') as f:
+    salesvspositive = load(f)
 
 # routes
 @app.route("/")
@@ -36,8 +40,12 @@ def reviews():
 def addJson():
     return render_template('genOwnChart2.html')
 
-@app.route("/postive-reviews-and-total-sales")
+@app.route("/postive-reviews-and-total-sales", methods=['GET', 'POST'])
 def postiveReviewsAndTotalSales():
+    if request.method == 'POST':
+        pred = salesvspositive.predict([[float(request.form.get('positive'))]])
+        return (f'<h1 style="text-align: center;">Total sales</h1><dialog open><p>{pred[0]}</p></dialog>')
+    
     return render_template('predictive2.html')
 
 @app.route("/negative-reviews-and-total-sales")

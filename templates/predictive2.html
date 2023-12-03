@@ -76,6 +76,13 @@
   </nav>
 
   <h1>Predictive Analysis Results</h1>
+
+  <form action="/postive-reviews-and-total-sales" method="POST">
+    <label>Enter a number</label>
+    <input type="number" name="positive" />
+    <input type="submit" />
+  </form>
+  
   <ul id="resultsList"></ul>
   <div id="barChartContainer">
     <canvas id="barChart"></canvas>
